@@ -3,52 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Devotional Bible</title>
 </head>
-<body">
+<body class="min-h-screen bg-gradient-to-br from-indigo-600 via-pink-500 to-amber-400 text-white font-['Poppins']">
+    <header class="pt-10 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold drop-shadow-lg tracking-tight">Devotional Bible</h1>
+        <p class="mt-2 text-sm md:text-base text-white/90">Scripture, reflection, and your journey — day by day</p>
+    </header>
     <div class="flex justify-center mt-8">
-        <div class="inline-flex rounded-md shadow-xs" role="group">
-            <button type="button" onclick="showContent('verse')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+        <div class="inline-flex rounded-xl shadow-xl ring-1 ring-white/20 backdrop-blur-md bg-white/10" role="group">
+            <button id="btn-verse" type="button" onclick="showContent('verse')" class="px-5 py-2.5 text-sm md:text-base font-semibold rounded-s-xl transition-all duration-300 hover:scale-[1.03] focus:outline-none text-white/90">
                 Bible Verse
             </button>
-            <button type="button" onclick="showContent('devotional')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+            <button id="btn-devotional" type="button" onclick="showContent('devotional')" class="px-5 py-2.5 text-sm md:text-base font-semibold transition-all duration-300 hover:scale-[1.03] focus:outline-none text-white/90">
                 Devotional
             </button>
-            <button type="button" onclick="showContent('calendar')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+            <button id="btn-calendar" type="button" onclick="showContent('calendar')" class="px-5 py-2.5 text-sm md:text-base font-semibold rounded-e-xl transition-all duration-300 hover:scale-[1.03] focus:outline-none text-white/90">
                 Calendar
             </button>
         </div>
     </div>
 
+    <main class="px-4">
     <div id="verse" class="mt-8 text-center">
-        <div class="border rounded-lg p-6 text-white shadow-md dark:bg-gray-800">
-            <h2 class="text-xl font-bold">Bible Verse</h2>
-            <p>“For God so loved the world...” (John 3:16)</p>
+        <div class="max-w-3xl  mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl ring-1 ring-white/20 mb-8">
+            <h2 class="text-2xl md:text-3xl font-extrabold">Bible Verses</h2>
+            <div id="versesList" class="mt-4 grid gap-4 text-left">
+                <p class="text-white/95 text-lg">Loading verses...</p>
+            </div>
         </div>
     </div>
     <div id="devotional" class="mt-8 text-center hidden">
-        <div class="border rounded-lg p-6 text-white shadow-md dark:bg-gray-800">
-            <h2 class="text-xl font-bold">Devotional</h2>
-            <p>Today's devotional: Trust in God's timing and love.</p>
+        <div class="max-w-2xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl ring-1 ring-white/20 text-left mb-8">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-center">Devotional</h2>
+            <p id="devoVerseRefLine" class="mt-2 text-white/80 text-sm text-center"></p>
+            <div class="mt-5 space-y-5">
+                <div>
+                    <h3 class="font-bold text-white/95">Observation</h3>
+                    <p id="devoObservation" class="text-white/90 mt-1">Preparing observation...</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-white/95">Application</h3>
+                    <p id="devoApplication" class="text-white/90 mt-1">Preparing application...</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-white/95">Prayer</h3>
+                    <p id="devoPrayer" class="text-white/90 mt-1">Preparing prayer...</p>
+                </div>
+            </div>
         </div>
     </div>
     <div id="calendar" class="mt-8 text-center hidden">
-        <div class="border rounded-lg p-6 text-white shadow-md dark:bg-gray-800">
-            <h2 class="text-xl font-bold">Calendar</h2>
-            <p>Upcoming events and readings for the week.</p>
+        <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl ring-1 ring-white/20 mb-8 text-left">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-center">Bible Season Calendar</h2>
+            <p id="calendarSeason" class="mt-2 text-white/90 text-lg text-center">Determining season...</p>
+            <p id="calendarSummary" class="mt-1 text-white/80 text-sm text-center"></p>
+            <div id="calendarList" class="mt-6 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"></div>
         </div>
     </div>
+    </main>
 
-    <script>
-        function showContent(section) {
-            document.getElementById('verse').classList.add('hidden');
-            document.getElementById('devotional').classList.add('hidden');
-            document.getElementById('calendar').classList.add('hidden');
-            document.getElementById(section).classList.remove('hidden');
-        }
-    </script>
+    <script src="script.js" defer></script>
 </body>
 </html>
