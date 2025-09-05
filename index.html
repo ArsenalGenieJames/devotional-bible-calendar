@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Devotional Bible</title>
+</head>
+<body">
+    <div class="flex justify-center mt-8">
+        <div class="inline-flex rounded-md shadow-xs" role="group">
+            <button type="button" onclick="showContent('verse')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                Bible Verse
+            </button>
+            <button type="button" onclick="showContent('devotional')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                Devotional
+            </button>
+            <button type="button" onclick="showContent('calendar')" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-blue-500 dark:focus:text-white">
+                Calendar
+            </button>
+        </div>
+    </div>
+
+    <div id="verse" class="mt-8 text-center">
+        <div class="border rounded-lg p-6 text-white shadow-md dark:bg-gray-800">
+            <h2 class="text-xl font-bold">Bible Verse</h2>
+            <p>“For God so loved the world...” (John 3:16)</p>
+        </div>
+    </div>
+    <div id="devotional" class="mt-8 text-center hidden">
+        <div class="border rounded-lg p-6 text-white shadow-md dark:bg-gray-800">
+            <h2 class="text-xl font-bold">Devotional</h2>
+            <p>Today's devotional: Trust in God's timing and love.</p>
+        </div>
+    </div>
+    <div id="calendar" class="mt-8 text-center hidden">
+        <div class="border rounded-lg p-6 text-white shadow-md dark:bg-gray-800">
+            <h2 class="text-xl font-bold">Calendar</h2>
+            <p>Upcoming events and readings for the week.</p>
+        </div>
+    </div>
+
+    <script>
+        function showContent(section) {
+            document.getElementById('verse').classList.add('hidden');
+            document.getElementById('devotional').classList.add('hidden');
+            document.getElementById('calendar').classList.add('hidden');
+            document.getElementById(section).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
